@@ -1,0 +1,58 @@
+<?php
+
+include_once('atrium_casetracker_subproject.features.inc');
+
+/**
+* Implementation of hook_init().
+*/
+function atrium_casetracker_subproject_init() {
+  drupal_add_css(drupal_get_path('module', 'atrium_casetracker_subproject') .'/atrium_casetracker_subproject.css');
+}
+
+/**
+ * Implementation of hook_views_pre_build().
+ * @param $views
+ */
+function atrium_casetracker_subproject_views_pre_build(&$view) {
+  if($view->name == 'casetracker_cases') {
+    $view->set_item($view->current_display, 'filter', 'field_casetracker_spid_nid', array(
+    	'operator' => 'or',
+      'value' => array(),
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'field_casetracker_spid_nid_op',
+        'identifier' => 'spid',
+        'label' => 'Subproject',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'id' => 'field_casetracker_spid_nid',
+      'table' => 'node_data_field_casetracker_spid',
+      'field' => 'field_casetracker_spid_nid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+      'reduce_duplicates' => 0,
+      )
+    );
+  }
+}
+
+/**
+ * Implementation of hook_context_links_alter();
+ * @param $links
+ */
+function atrium_casetracker_context_links_alter(&$links) {
+  if(isset($links['casetracker_basic_project'])) {
+    $links['casetracker_subproject'] = array(
+      'title' => t('Add Subproject'),
+      'href' => 'node/add/casetracker-subproject',
+    );
+  }
+}
+
