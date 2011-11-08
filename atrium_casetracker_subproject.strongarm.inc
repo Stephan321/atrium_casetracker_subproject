@@ -17,8 +17,6 @@ function atrium_casetracker_subproject_strongarm() {
     'book' => 0,
     'event' => 0,
     'group' => 0,
-    'invoice' => 0,
-    'password' => 0,
     'profile' => 0,
     'shoutbox' => 0,
     'feed_ical_item' => 0,

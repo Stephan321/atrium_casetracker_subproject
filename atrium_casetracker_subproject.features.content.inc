@@ -57,8 +57,6 @@ function atrium_casetracker_subproject_content_default_fields() {
       'casetracker_basic_case' => 0,
       'event' => 0,
       'group' => 0,
-      'invoice' => 0,
-      'password' => 0,
       'profile' => 0,
       'casetracker_basic_project' => 0,
       'shoutbox' => 0,
